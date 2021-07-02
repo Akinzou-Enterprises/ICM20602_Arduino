@@ -78,6 +78,23 @@ enum CLKSEL
 	StopClock = 0b111,
 };
 
+enum GyroPrec
+{
+	dps250 = 0b00,
+	dps500 = 0b01,
+	dps1000 = 0b10,
+	dps2000 = 0b11,
+};
+
+enum AccelPrec
+{
+	g2 = 0b00,
+	g4 = 0b01,
+	g8 = 0b10,
+	g16 = 0b11,
+};
+
+
 class ICM20602
 {		
 	public:
@@ -104,6 +121,12 @@ class ICM20602
 		int ReadGyroX();
 		int ReadGyroY();
 		int ReadGyroZ();
+		int ReadAngleX();
+		void SetOffsetGyroX(int offset);
+		void SetOffsetGyroY(int offset);
+		void SetOffsetGyroZ(int offset);
+		void GyroPrecision(GyroPrec dps);
+		void AccelPrecision(AccelPrec g);
 		uint8_t read8(byte reg);
 };
 
