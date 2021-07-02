@@ -57,6 +57,11 @@ void::ICM20602::Init(CLKSEL CLK, bool EnableTemp, bool GryroStandby, bool Cycle)
     write8(PWR_MGMT_1, ConfigToSend);
 }
 
+int ICM20602::ReadAngleX()
+{
+
+}
+
 
 void ICM20602::GyroStandby(bool On)
 {
@@ -99,6 +104,37 @@ void ICM20602::Sleep(bool On)
         ConfigToSend &= ~(0x40);
     }
     write8(PWR_MGMT_1, ConfigToSend);
+}
+
+void ICM20602::SetOffsetGyroX(int offset)
+{
+    uint8_t RegL =| offset;
+    uint8_t RegH =| offset >> 8;
+    write8(XG_OFFS_TC_L, RegL);
+    write8(XG_OFFS_TC_H, RegH);
+}
+
+void ICM20602::SetOffsetGyroY(int offset)
+{
+    uint8_t RegL =| offset;
+    uint8_t RegH =| offset >> 8;
+    write8(YG_OFFS_TC_L, RegL);
+    write8(YG_OFFS_TC_H, RegH);
+}
+
+
+void ICM20602::SetOffsetGyroZ(int offset)
+{
+    uint8_t RegL =| offset;
+    uint8_t RegH =| offset >> 8;
+    write8(ZG_OFFS_TC_L, RegL);
+    write8(ZG_OFFS_TC_H, RegH);
+}
+
+
+void ICM20602::GyroPrecision(GyroPrec dps)
+{
+    write8(GYRO_CONFIG, dps<<2);
 }
 
 void ICM20602::GyroS(bool X, bool Y, bool Z)
@@ -153,12 +189,44 @@ void ICM20602::GyroZ(bool On)
     write8(PWR_MGMT_2, ConfigToSend);
 }
 
+void ICM20602::AccelPrecision(AccelPrec g)
+{
+    write8(GYRO_CONFIG, g<<2);
+}
+
 void ICM20602::AccelS(bool X, bool Y, bool Z)
 {
     AccelX(X);
     AccelY(Y);
     AccelZ(Z);
 }
+
+void ICM20602::SetOffsetGyroX(int offset)
+{
+    uint8_t RegL =| offset;
+    uint8_t RegH =| offset >> 8;
+    write8(XA_OFFSET_H, RegL);
+    write8(XA_OFFSET_L, RegH);
+}
+
+
+void ICM20602::SetOffsetGyroY(int offset)
+{
+    uint8_t RegL =| offset;
+    uint8_t RegH =| offset >> 8;
+    write8(YA_OFFSET_H, RegL);
+    write8(YA_OFFSET_H, RegH);
+}
+
+
+void ICM20602::SetOffsetGyroZ(int offset)
+{
+    uint8_t RegL =| offset;
+    uint8_t RegH =| offset >> 8;
+    write8(ZA_OFFSET_H, RegL);
+    write8(ZA_OFFSET_H, RegH);
+}
+
 
 void ICM20602::AccelZ(bool On)
 {
