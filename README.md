@@ -1,7 +1,7 @@
 # ICM20602_Arduino
 ICM20602 only in I2C mode
 
-ICM20602 ICM(true); TRUE - 0x69 false - 0x68
+ICM20602 ICM(true); TRUE - 0x69 (SA0 VCC) false - 0x68 (SA0 GND)
 
 ICM.Init(CLKSEL CLK, bool EnableTemp, bool GryroStandby, bool Cycle);
 ICM.GyroS(bool X, bool Y, bool Z);
