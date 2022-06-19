@@ -22,7 +22,7 @@ void ICM20602::Restart()
     delay(10);
 }
 
-void::ICM20602::Init(CLKSEL CLK, bool EnableTemp, bool GryroStandby, bool Cycle)
+void ICM20602::Init(CLKSEL CLK, bool EnableTemp, bool GryroStandby, bool Cycle)
 {
     uint8_t ConfigToSend = 0b00000000;
     switch (CLK)
