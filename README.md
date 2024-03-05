@@ -16,4 +16,4 @@ To read use
 ICM.ReadGyroX/Y/Z();
 ICM.ReadAccelX/Y/Z();
 
-It's returning 16bit varibalme
+It's returning 16bit varibale
